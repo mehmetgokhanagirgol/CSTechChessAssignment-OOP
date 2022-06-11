@@ -80,13 +80,10 @@ void Pawn::threathen(vector<vector<square>> &board){
 }
 
 void Queen::checkDirections(vector<vector<square>> &board, unsigned long i){
-    // go in the direction given till out of bounds or hitting another piece
-    // if we hit check which side, if ally do nothing if enemy threathen it
     int tempPositionRow = this->getRowPosition();
     int tempPositionColumn = this->getColumnPosition();
     while(inBounds(tempPositionRow  += directions[i].first, tempPositionColumn +=directions[i].second)){
             if(board[tempPositionRow][tempPositionColumn].piece->getValue() != 0){
-                //hit
                 if(board[tempPositionRow][tempPositionColumn].piece->getSide() == side)
                     break;
                 else{

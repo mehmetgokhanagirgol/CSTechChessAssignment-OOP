@@ -38,9 +38,6 @@ Piece *checkPiece(char piece){
 
 
 void takeInput(vector<vector<square>> &board){
-    // take the input for board, board consists piece and underthreat bool
-    // piece consists side,row and column position
-    // used inheritance for individual piece types
     string piece;
     Piece *piece_type;
     for(auto i = 0; i < row_size; ++i){
@@ -56,7 +53,6 @@ void takeInput(vector<vector<square>> &board){
 }
 
 void threatBoard(vector<vector<square>> &board){
-    // for every piece invoke threat method
     for(auto i = 0; i < row_size; ++i){
         for(auto j = 0; j < column_size; ++j){
             board[i][j].piece->threathen(board);
@@ -65,7 +61,7 @@ void threatBoard(vector<vector<square>> &board){
 }
 
 void calculatePoints(vector<vector<square>> &board, pair<double, double> &points){
-    // for every square check for piece value and if it is underThreat
+    //points.first -> white, points.second -> black
     for(auto i = 0; i < row_size; ++i){
         for(auto j = 0; j < column_size; ++j){
             if(board[i][j].piece->getSide() == 'b'){
@@ -89,7 +85,6 @@ int main(){
     ChessBoard chess_board;
     pair<double, double> points = {0, 0};
 
-    // Take input, do the threats for each piece then calculate the points
     takeInput(chess_board.getBoard());
     threatBoard(chess_board.getBoard());
     calculatePoints(chess_board.getBoard(), points);

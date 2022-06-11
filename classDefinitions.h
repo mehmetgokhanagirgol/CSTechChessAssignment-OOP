@@ -18,7 +18,6 @@ class ChessBoard{
         vector<vector<square>> board;
 };
 
-// for every piece type there is a child class (parent class is Piece)
 class Piece{
     public:
         virtual double getValue() = 0;
@@ -36,7 +35,6 @@ class Piece{
         int columnPosition;
 };
 
-// for pawn and knight we check point by point if square is not on our side we threaten it
 class Pawn: public Piece{
     public:
         double getValue(){
@@ -44,8 +42,8 @@ class Pawn: public Piece{
         };
         void threathen(vector<vector<square>> &board);
     private:
-        vector<pair<int, int>> ptvb = {{1, 1}, {1, -1}};
-        vector<pair<int, int>> ptvw = {{-1, 1}, {-1, -1}};
+        vector<pair<int, int>> ptvb = {{1, 1}, {1, -1}}; // ptvb is acronym for pawnthreatvectorblack
+        vector<pair<int, int>> ptvw = {{-1, 1}, {-1, -1}}; // ptvw is acronym for pawnthreatvectorwhite
 };
 
 class Knight: public Piece{
@@ -55,7 +53,7 @@ class Knight: public Piece{
         };
         void threathen(vector<vector<square>> &board);
     private:
-        vector<pair<int, int>> ktv = {{2, 1},{2, -1},{-2, 1},{-2, -1},{1, 2},{1, -2},{-1, -2},{-1, 2}};
+        vector<pair<int, int>> ktv = {{2, 1},{2, -1},{-2, 1},{-2, -1},{1, 2},{1, -2},{-1, -2},{-1, 2}}; // ktv is acronym for knightthreatvector
 };
 
 class Bishop: public Piece{
@@ -74,7 +72,6 @@ class Rook: public Piece{
         void threathen(vector<vector<square>> &){};
 };
 
-// for queen we check directions if we hit ally we break, if we hit enemy we set the underThreat and break
 class Queen: public Piece{
     public:
         double getValue(){
